@@ -1,0 +1,11 @@
+Student_ID,Name,Gender,Study_Hours,Attendance,Total_Marks,Average_Marks,Result
+101,Amit,Male,3,85,393,78.6,PASS
+102,Priya,Female,5,92,448,89.6,PASS
+103,Rahul,Male,2,70,341,68.2,PASS
+104,Sneha,Female,6,95,465,93.0,PASS
+105,Pooja,Female,4,88,422,84.4,PASS
+106,Akash,Male,3,76,359,71.8,PASS
+107,Neha,Female,7,98,481,96.2,PASS
+108,Rohit,Male,2,65,315,63.0,PASS
+109,Kiran,Female,5,90,447,89.4,PASS
+110,Om,Male,4,82,397,79.4,PASS

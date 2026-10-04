@@ -1,0 +1,249 @@
+from pathlib import Path
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# ==========================================
+# 1. LOAD DATASET
+# ==========================================
+
+DATASET_PATH = Path(__file__).resolve().parent / "student.csv"
+df = pd.read_csv(DATASET_PATH)
+
+print("\n===== STUDENT DATA =====")
+print(df)
+
+
+# ==========================================
+# 2. SUBJECTS
+# ==========================================
+
+subjects = [
+    "Maths",
+    "Physics",
+    "Chemistry",
+    "Python",
+    "ML"
+]
+
+
+# ==========================================
+# 3. CALCULATE AVERAGE MARKS
+# ==========================================
+
+df["Average_Marks"] = df[subjects].mean(axis=1)
+
+print("\n===== AVERAGE MARKS =====")
+print(df[["Name", "Average_Marks"]])
+
+
+# ==========================================
+# 4. STUDENT AVERAGE - BAR CHART
+# ==========================================
+
+plt.figure(figsize=(10, 5))
+
+plt.bar(df["Name"], df["Average_Marks"])
+
+plt.title("Student Average Marks")
+plt.xlabel("Students")
+plt.ylabel("Average Marks")
+
+plt.ylim(0, 100)
+plt.xticks(rotation=45)
+plt.grid(axis="y")
+
+plt.tight_layout()
+plt.savefig("student_average_bar.png")
+plt.show()
+
+
+# ==========================================
+# 5. STUDENT PERFORMANCE - LINE CHART
+# ==========================================
+
+plt.figure(figsize=(10, 5))
+
+plt.plot(
+    df["Name"],
+    df["Average_Marks"],
+    marker="o",
+    label="Average Marks"
+)
+
+plt.title("Student Performance")
+plt.xlabel("Students")
+plt.ylabel("Average Marks")
+
+plt.ylim(0, 100)
+plt.xticks(rotation=45)
+plt.grid()
+plt.legend()
+
+plt.tight_layout()
+plt.savefig("student_performance_line.png")
+plt.show()
+
+
+# ==========================================
+# 6. STUDY HOURS VS MARKS - SCATTER
+# ==========================================
+
+plt.figure(figsize=(8, 5))
+
+plt.scatter(
+    df["Study_Hours"],
+    df["Average_Marks"]
+)
+
+plt.title("Study Hours vs Average Marks")
+plt.xlabel("Study Hours")
+plt.ylabel("Average Marks")
+
+plt.ylim(0, 100)
+plt.grid()
+
+plt.tight_layout()
+plt.savefig("study_hours_vs_marks.png")
+plt.show()
+
+
+# ==========================================
+# 7. MARKS DISTRIBUTION - HISTOGRAM
+# ==========================================
+
+plt.figure(figsize=(8, 5))
+
+plt.hist(
+    df["Average_Marks"],
+    bins=5
+)
+
+plt.title("Average Marks Distribution")
+plt.xlabel("Average Marks")
+plt.ylabel("Number of Students")
+
+plt.grid()
+
+plt.tight_layout()
+plt.savefig("marks_distribution.png")
+plt.show()
+
+
+# ==========================================
+# 8. SUBJECT-WISE AVERAGE
+# ==========================================
+
+subject_average = df[subjects].mean()
+
+print("\n===== SUBJECT-WISE AVERAGE =====")
+print(subject_average)
+
+
+# ==========================================
+# 9. SUBJECT-WISE BAR CHART
+# ==========================================
+
+plt.figure(figsize=(8, 5))
+
+plt.bar(
+    subjects,
+    subject_average
+)
+
+plt.title("Subject-wise Average Marks")
+plt.xlabel("Subjects")
+plt.ylabel("Average Marks")
+
+plt.ylim(0, 100)
+plt.grid(axis="y")
+
+plt.tight_layout()
+plt.savefig("subject_average.png")
+plt.show()
+
+
+# ==========================================
+# 10. SUBJECT PERFORMANCE - PIE CHART
+# ==========================================
+
+plt.figure(figsize=(8, 8))
+
+plt.pie(
+    subject_average,
+    labels=subjects,
+    autopct="%1.1f%%"
+)
+
+plt.title("Subject-wise Performance")
+
+plt.tight_layout()
+plt.savefig("subject_performance_pie.png")
+plt.show()
+
+
+# ==========================================
+# 11. TOPPER
+# ==========================================
+
+topper_index = df["Average_Marks"].idxmax()
+
+topper_name = df.loc[topper_index, "Name"]
+topper_marks = df.loc[topper_index, "Average_Marks"]
+
+print("\n===== TOPPER =====")
+print("Name:", topper_name)
+print("Average Marks:", round(topper_marks, 2))
+
+
+# ==========================================
+# 12. ATTENDANCE ANALYSIS
+# ==========================================
+
+print("\n===== ATTENDANCE ANALYSIS =====")
+
+print("Highest Attendance:",
+      df["Attendance"].max())
+
+print("Lowest Attendance:",
+      df["Attendance"].min())
+
+print("Average Attendance:",
+      round(df["Attendance"].mean(), 2))
+
+
+# ==========================================
+# 13. FINAL REPORT
+# ==========================================
+
+print("\n==========================================")
+print("        FINAL STUDENT REPORT")
+print("==========================================")
+
+final_report = df[
+    [
+        "Student_ID",
+        "Name",
+        "Study_Hours",
+        "Attendance",
+        "Average_Marks"
+    ]
+]
+
+print(final_report)
+
+
+# ==========================================
+# 14. SAVE FINAL REPORT
+# ==========================================
+
+final_report.to_csv(
+    "final_visualization_report.csv",
+    index=False
+)
+
+print("\n==========================================")
+print("All graphs generated successfully!")
+print("Final report saved successfully!")
+print("==========================================")

@@ -1,0 +1,11 @@
+Student_ID,Name,Gender,Age,Study_Hours,Attendance,Maths,Physics,Chemistry,Python,ML
+101,Amit,Male,20,3,85,78,72,80,88,75
+102,Priya,Female,21,5,92,90,88,85,94,91
+103,Rahul,Male,20,2,70,65,68,72,70,66
+104,Sneha,Female,22,6,95,92,90,94,96,93
+105,Pooja,Female,21,4,88,82,85,80,89,86
+106,Akash,Male,20,3,76,70,74,68,75,72
+107,Neha,Female,22,7,98,96,94,97,99,95
+108,Rohit,Male,21,2,65,60,64,62,68,61
+109,Kiran,Female,20,5,90,86,88,91,93,89
+110,Om,Male,22,4,82,78,80,76,84,79
